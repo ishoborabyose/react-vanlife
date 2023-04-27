@@ -14,7 +14,9 @@ const Navbar = () => {
           <Link to="/about" className="p-2 hover:underline">
             About
           </Link>
-          <h3 className="p-2 hover:underline">Vans</h3>
+          <Link to="/vans" className="p-2 hover:underline">
+            Vans
+          </Link>
         </div>
       </div>
     </div>
