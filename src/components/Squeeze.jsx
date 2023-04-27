@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Squeeze = () => {
   return (
     <div className="bg-[#fff7ed] pb-14">
@@ -26,9 +28,11 @@ const Squeeze = () => {
           <p className="text-[#161616] font-bold text-2xl mb-6 leading-8">
             Your destination is waiting. Your van is ready.
           </p>
-          <button className="bg-[#161616] px-3 py-2 rounded-xl text-center text-[#FFFFFF] leading-6 text-sm font-bold">
-            Explore our vans
-          </button>
+          <Link to="/vans">
+            <button className="bg-[#161616] px-3 py-2 rounded-xl text-center text-[#FFFFFF] leading-6 text-sm font-bold">
+              Explore our vans
+            </button>
+          </Link>
         </div>
       </div>
     </div>

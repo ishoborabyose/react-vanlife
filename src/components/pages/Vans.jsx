@@ -51,13 +51,11 @@ const Vans = () => {
                       </h4>
                     </div>
                     <button
-                      className={`text-[#ffead0] rounded-md text-center text-base leading-8 px-3 py-2 ${
-                        index === 0 ? "bg-[#e17654]" : ""
-                      } ${index === 1 ? "bg-[#115e59]" : ""} ${
-                        index === 2 ? "bg-[#161616]" : ""
-                      }   ${index === 3 ? "bg-[#e17654]" : ""} ${
-                        index === 4 ? "bg-[#115e59]" : ""
-                      } ${index === 5 ? "bg-[#161616]" : ""}`}
+                      className={`text-[rgb(255,234,208)] rounded-md text-center text-base leading-8 px-3 py-2 ${
+                        item.type === "simple" ? "bg-[#e17654]" : ""
+                      } ${item.type === "rugged" ? "bg-[#115e59]" : ""} ${
+                        item.type === "luxury" ? "bg-[#161616]" : ""
+                      }`}
                     >
                       {item.type}
                     </button>
