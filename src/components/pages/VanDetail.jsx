@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 
-const vanDetail = () => {
+const VanDetail = () => {
   const [info, setInfo] = useState(null);
   const params = useParams();
   useEffect(() => {
@@ -53,4 +53,4 @@ const vanDetail = () => {
   );
 };
 
-export default vanDetail;
+export default VanDetail;
