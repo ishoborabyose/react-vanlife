@@ -2,7 +2,7 @@ import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Vans from "./components/pages/Vans";
-import VanDetail from "./components/pages/vanDetail";
+import VanDetail from "./components/pages/VanDetail";
 import "./server";
 
 function App() {
