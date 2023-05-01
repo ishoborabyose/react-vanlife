@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Squeeze = () => {
+const About = () => {
   return (
     <div className="bg-[#fff7ed] pb-14">
       <div>
@@ -39,4 +39,4 @@ const Squeeze = () => {
   );
 };
 
-export default Squeeze;
+export default About;

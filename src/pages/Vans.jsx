@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import Navbar from "../Navbar";
-import Footer from "../Footer";
 import { Link } from "react-router-dom";
 
 const Vans = () => {
@@ -14,7 +12,6 @@ const Vans = () => {
 
   return (
     <>
-      <Navbar />
       <div className="bg-[#fff7ed] pb-14">
         <div className="max-w-7xl mx-auto px-4">
           <h1 className="font-bold text-3xl leading-8 text-[#161616] pt-14 mb-6">
@@ -66,7 +63,6 @@ const Vans = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

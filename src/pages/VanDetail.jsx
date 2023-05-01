@@ -1,7 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Navbar from "../Navbar";
-import Footer from "../Footer";
 
 const VanDetail = () => {
   const [info, setInfo] = useState(null);
@@ -15,7 +13,6 @@ const VanDetail = () => {
 
   return (
     <>
-      <Navbar />
       <div className="bg-[#FFF7ED]">
         <div className="max-w-7xl mx-auto px-4">
           {info ? (
@@ -48,7 +45,6 @@ const VanDetail = () => {
           )}
         </div>
       </div>
-      <Footer />
     </>
   );
 };
