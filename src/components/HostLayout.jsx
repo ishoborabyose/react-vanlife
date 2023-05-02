@@ -1,13 +1,12 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import { NavLink, Link, Outlet } from "react-router-dom";
 
 const HostLayout = () => {
   return (
     <>
       <nav className="flex max-w-7xl mx-auto px-4 justify-evenly items-start">
         <NavLink
-          to="/host"
+          to="."
           end
           className={({ isActive }) =>
             isActive
@@ -23,7 +22,7 @@ const HostLayout = () => {
               ? "font-bold underline text-[#161616] p-2"
               : "p-2 hover:underline hover:text-[#161616]"
           }
-          to="/host/income"
+          to="income"
         >
           Income
         </NavLink>
@@ -33,7 +32,17 @@ const HostLayout = () => {
               ? "font-bold underline text-[#161616] p-2"
               : "p-2 hover:underline hover:text-[#161616]"
           }
-          to="/host/reviews"
+          to="vans"
+        >
+          Vans
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "font-bold underline text-[#161616] p-2"
+              : "p-2 hover:underline hover:text-[#161616]"
+          }
+          to="reviews"
         >
           Reviews
         </NavLink>
