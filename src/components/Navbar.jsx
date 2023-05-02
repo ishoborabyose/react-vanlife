@@ -1,11 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
 
 const Navbar = () => {
-  const activeStyle = {
-    fontWeight: "bold",
-    textDecoration: "underline",
-    color: "#161616",
-  };
   return (
     <div className="bg-[#FFF7ED]">
       <div className="flex justify-between py-9 max-w-7xl mx-auto px-4">

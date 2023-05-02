@@ -9,29 +9,38 @@ const HostVans = () => {
       .then((data) => setVans(data.vans));
   }, []);
   return (
-    <div>
-      <h1>Your listed vans</h1>
-      <div>
-        {vans.length > 0 ? (
-          <section>
-            {vans.map((van) => {
-              return (
-                <Link to={`/host/vans/${van.id}`} key={van.id}>
-                  <div className="">
-                    <img src={van.imageUrl} alt={`photo of ${van.name}`} />
-                    <div className="">
-                      <h3>{van.name}</h3>
-                      <p>${van.price}</p>
-                    </div>
+    <div className="max-w-7xl min-h-screen -mb-16  mx-auto px-4">
+      <h1 className="text-[#161616] mb-10 font-bold text-4xl leading-8">
+        Your listed vans
+      </h1>
+
+      {vans.length > 0 ? (
+        <section>
+          {vans.map((van) => {
+            return (
+              <Link className="" to={`/host/vans/${van.id}`} key={van.id}>
+                <div className="bg-white mt-3 py-5 px-6 flex items-center">
+                  <img
+                    className="w-16 h-16"
+                    src={van.imageUrl}
+                    alt={`photo of ${van.name}`}
+                  />
+                  <div className="ml-4">
+                    <h3 className="font-semibold text-xl leading-8 text-[#161616]">
+                      {van.name}
+                    </h3>
+                    <p className="text-[#4D4D4D] font-medium text-base leading-8">
+                      ${van.price} /day
+                    </p>
                   </div>
-                </Link>
-              );
-            })}
-          </section>
-        ) : (
-          <h2>Loading ...</h2>
-        )}
-      </div>
+                </div>
+              </Link>
+            );
+          })}
+        </section>
+      ) : (
+        <h2>Loading ...</h2>
+      )}
     </div>
   );
 };

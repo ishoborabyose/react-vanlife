@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div className="relative h-screen">
-      <div className=" h-full">
+      <div className=" relative">
         <img
-          className="w-full object-cover h-full absolute -z-10"
+          className="w-full object-cover h-screen absolute -z-10"
           src="/assets/image1.webp"
         />
         <div className="max-w-7xl mx-auto px-4   text-white">
@@ -17,7 +17,7 @@ function Home() {
               the perfect van to make your perfect road trip.
             </h3>
             <Link to="/vans">
-              <button className="font-bold text-base w-full leading-8 text-center py-3 bg-[#FF8C38] rounded-md">
+              <button className="font-bold text-base w-full mb-24 leading-8 text-center py-3 bg-[#FF8C38] rounded-md">
                 Find your van
               </button>
             </Link>
