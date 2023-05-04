@@ -1,13 +1,34 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getVansHost } from "../../api";
 
 const Dashboard = () => {
   const [vans, setVans] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    fetch("/api/host/vans")
-      .then((res) => res.json())
-      .then((data) => setVans(data.vans));
+    async function loadVans() {
+      setLoading(true);
+      try {
+        const data = await getVansHost();
+        setVans(data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadVans();
   }, []);
+
+  if (error) {
+    return (
+      <h1 className="text-2xl font-black text-[#161616] bg-[#FFF7ED] leading-6">
+        There was an error: {error.message}
+      </h1>
+    );
+  }
 
   return (
     <div className="bg-[#FFF7ED]">
@@ -54,7 +75,11 @@ const Dashboard = () => {
           </h4>
         </div>
         <div>
-          {vans.length > 0 ? (
+          {vans.length > 0 && loading ? (
+            <h1 className="text-2xl font-black text-[#161616] bg-[#FFF7ED] leading-6">
+              Loading...
+            </h1>
+          ) : (
             <section className="pb-6">
               {vans.map((van) => {
                 return (
@@ -81,8 +106,6 @@ const Dashboard = () => {
                 );
               })}
             </section>
-          ) : (
-            <h2>Loading ...</h2>
           )}
         </div>
       </div>
