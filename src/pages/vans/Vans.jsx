@@ -1,22 +1,58 @@
 import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { getVans } from "../../api";
 
 const Vans = () => {
   const [info, setInfo] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const typeFilter = searchParams.get("type");
-  console.log(typeFilter);
 
   useEffect(() => {
-    fetch("/api/vans")
-      .then((response) => response.json())
-      .then((data) => setInfo(data.vans))
-      .catch((error) => console.error(error));
+    async function loadVans() {
+      setLoading(true);
+      try {
+        const data = await getVans();
+        setInfo(data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadVans();
   }, []);
 
   const filtered = typeFilter
     ? info.filter((char) => char.type === typeFilter)
     : info;
+
+  const handleFilterChange = (key, value) => {
+    setSearchParams((prevParams) => {
+      if (value === null) {
+        prevParams.delete(key);
+      } else {
+        prevParams.set(key, value);
+      }
+      return prevParams;
+    });
+  };
+
+  if (loading) {
+    return (
+      <h1 className="text-2xl font-black text-[#161616] bg-[#FFF7ED] leading-6">
+        Loading...
+      </h1>
+    );
+  }
+  if (error) {
+    return (
+      <h1 className="text-2xl font-black text-[#161616] bg-[#FFF7ED] leading-6">
+        There was an error: {error.message}
+      </h1>
+    );
+  }
 
   return (
     <>
@@ -27,32 +63,50 @@ const Vans = () => {
           </h1>
           <div className="flex justify-between">
             {[
-              { name: "Simple", url: "type=simple" },
-              { name: "Luxury", url: "type=luxury" },
-              { name: "Rugged", url: "type=rugged" },
+              { name: "Simple", type: "simple" },
+              { name: "Luxury", type: "luxury" },
+              { name: "Rugged", type: "rugged" },
             ].map((item, index) => {
               return (
                 <div
-                  className="bg-[#FFEAD0] cursor-pointer px-3 py-2 rounded-md text-[#4D4D4D] text-center text-base leading-6"
-                  onClick={() => setSearchParams(item.url)}
+                  className={` cursor-pointer px-3 py-2 rounded-md text-[#4D4D4D]  text-center text-base leading-6
+                  ${
+                    typeFilter === item.type
+                      ? item.type === "luxury"
+                        ? "text-white bg-[#161616]"
+                        : item.type === "simple"
+                        ? "text-white bg-[#e17654]"
+                        : "text-white bg-[#115e59]"
+                      : "bg-[#FFEAD0]"
+                  }
+                   `}
+                  onClick={() => handleFilterChange("type", item.type)}
                   key={index}
                 >
                   {item.name}
                 </div>
               );
             })}
-            <p
-              onClick={() => setSearchParams({})}
-              className="text-[#4D4D4D] font-medium cursor-pointer text-base leading-6 underline"
-            >
-              Clear filter
-            </p>
+            {typeFilter ? (
+              <p
+                onClick={() => handleFilterChange("type", null)}
+                className="text-[#4D4D4D] font-medium cursor-pointer text-base leading-6 underline"
+              >
+                Clear filter
+              </p>
+            ) : null}
           </div>
           <div className="grid grid-cols-2 gap-8 mt-14">
             {filtered.map((item) => {
               return (
                 <div key={item.id}>
-                  <Link to={`/vans/${item.id}`}>
+                  <Link
+                    to={item.id}
+                    state={{
+                      search: `?${searchParams.toString()}`,
+                      type: typeFilter,
+                    }}
+                  >
                     <img className="rounded-md" src={item.imageUrl} />
                     <div className="flex justify-between font-semibold text-xl leading-8 text-[#161616]">
                       <h4>{item.name}</h4>

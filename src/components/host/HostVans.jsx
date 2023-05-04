@@ -18,7 +18,7 @@ const HostVans = () => {
         <section>
           {vans.map((van) => {
             return (
-              <Link className="" to={`/host/vans/${van.id}`} key={van.id}>
+              <Link to={van.id} key={van.id}>
                 <div className="bg-white mt-3 py-5 px-6 flex items-center">
                   <img
                     className="w-16 h-16"
