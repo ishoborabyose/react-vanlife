@@ -41,6 +41,16 @@ const Navbar = () => {
           >
             Vans
           </NavLink>
+          <NavLink
+            to="/login"
+            className={({ isActive }) =>
+              isActive
+                ? "font-bold underline text-[#161616] p-2"
+                : "p-2 hover:underline hover:text-[#161616]"
+            }
+          >
+            <img src="/assets/User.png" alt="" />
+          </NavLink>
         </div>
       </div>
     </div>
