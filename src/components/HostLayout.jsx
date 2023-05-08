@@ -1,5 +1,4 @@
-import React from "react";
-import { NavLink, Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 const HostLayout = () => {
   return (
