@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import { getVansHost } from "../../api";
+
+export function loader({ params }) {
+  return getVansHost(params.id);
+}
 
 const HostVans = () => {
-  const [vans, setVans] = useState([]);
-  useEffect(() => {
-    fetch("/api/host/vans")
-      .then((res) => res.json())
-      .then((data) => setVans(data.vans));
-  }, []);
+  const vans = useLoaderData();
+
   return (
     <div className="max-w-7xl min-h-screen -mb-16  mx-auto px-4">
       <h1 className="text-[#161616] mb-10 font-bold text-4xl leading-8">
         Your listed vans
       </h1>
 
-      {vans.length > 0 ? (
+      {vans.length > 0 && (
         <section>
           {vans.map((van) => {
             return (
@@ -38,8 +38,6 @@ const HostVans = () => {
             );
           })}
         </section>
-      ) : (
-        <h2>Loading ...</h2>
       )}
     </div>
   );
