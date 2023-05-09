@@ -13,7 +13,6 @@ const HostVans = () => {
       <h1 className="text-[#161616] mb-10 font-bold text-4xl leading-8">
         Your listed vans
       </h1>
-
       {vans.length > 0 && (
         <section>
           {vans.map((van) => {
