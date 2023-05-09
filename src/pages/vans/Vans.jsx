@@ -1,5 +1,5 @@
 import { Link, useSearchParams, useLoaderData } from "react-router-dom";
-import VansFilter from "./vansFilter";
+import VansFilter from "../../components/vansFilter";
 import { getVans } from "../../api";
 
 export function loader() {
