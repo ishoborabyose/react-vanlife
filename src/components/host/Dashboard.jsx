@@ -81,30 +81,28 @@ const Dashboard = () => {
             </h1>
           ) : (
             <section className="pb-6">
-              {vans.map((van) => {
-                return (
-                  <Link className="" to={`/host/vans/${van.id}`} key={van.id}>
-                    <div className="bg-white mt-3 py-5 px-6 flex items-center">
-                      <img
-                        className="w-16 h-16"
-                        src={van.imageUrl}
-                        alt={`photo of ${van.name}`}
-                      />
-                      <div className="ml-4">
-                        <h3 className="font-semibold text-xl leading-8 text-[#161616]">
-                          {van.name}
-                        </h3>
-                        <p className="text-[#4D4D4D] font-medium text-base leading-8">
-                          ${van.price} /day
-                        </p>
-                      </div>
-                      <h4 className="text-[#161616] font-medium text-base leading-6  ml-auto">
-                        Edit
-                      </h4>
+              {vans.map((van) => (
+                <Link className="" to={`/host/vans/${van.id}`} key={van.id}>
+                  <div className="bg-white mt-3 py-5 px-6 flex items-center">
+                    <img
+                      className="w-16 h-16"
+                      src={van.imageUrl}
+                      alt={`photo of ${van.name}`}
+                    />
+                    <div className="ml-4">
+                      <h3 className="font-semibold text-xl leading-8 text-[#161616]">
+                        {van.name}
+                      </h3>
+                      <p className="text-[#4D4D4D] font-medium text-base leading-8">
+                        ${van.price} /day
+                      </p>
                     </div>
-                  </Link>
-                );
-              })}
+                    <h4 className="text-[#161616] font-medium text-base leading-6  ml-auto">
+                      Edit
+                    </h4>
+                  </div>
+                </Link>
+              ))}
             </section>
           )}
         </div>

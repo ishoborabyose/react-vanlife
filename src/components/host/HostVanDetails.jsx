@@ -27,7 +27,7 @@ const HostVanDetail = () => {
       </Link>
       <div className="bg-[#FFFFFF] mt-10 py-6 px-7">
         <div className=" mt-10 flex items-center  gap-8">
-          <img src={currentVan.imageUrl} width={150} />
+          <img src={currentVan.imageUrl} alt="van image" width={150} />
           <div className="mt-6">
             <button className="text-[#ffead0] rounded-md text-center text-base leading-8 px-3 py-2 mb-5 bg-[#e17654]">
               {currentVan.type}
