@@ -10,27 +10,37 @@ import Vans, { loader as vansLoader } from "./pages/vans/Vans";
 import VanDetail, { loader as vanDetailLoader } from "./pages/vans/VanDetail";
 import "./server";
 import Layout from "./components/Layout";
-import Dashboard from "./components/host/Dashboard";
+import Dashboard, {
+  loader as dashboardLoader,
+} from "./components/host/Dashboard";
 import Income from "./components/host/Income";
 import Reviews from "./components/host/Reviews";
 import HostLayout from "./components/HostLayout";
 import HostVans, { loader as hostVanLoader } from "./components/host/HostVans";
-import HostVanDetails from "./components/host/HostVanDetails";
+import HostVanDetails, {
+  loader as HostVanLoaderDetails,
+} from "./components/host/HostVanDetails";
 import HostVanInfo from "./components/host/HostVanInfo";
 import HostVanPricing from "./components/host/HostVanPricing";
 import HostVanPhotos from "./components/host/HostVanPhotos";
 import NotFound from "./pages/NotFound";
 import Error from "./components/Error";
-import Login from "./pages/Login";
+import Login, { loader as loginLoader } from "./pages/Login";
+import { requireAuth } from "./utils";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />} errorElement={<Error />}>
+    <Route path="/" element={<Layout />}>
       <Route index element={<Home />}></Route>
       <Route path="about" element={<About />}></Route>
-      <Route path="login" element={<Login />}></Route>
+      <Route path="login" element={<Login />} loader={loginLoader}></Route>
       <Route path="vans">
-        <Route index element={<Vans />} loader={vansLoader}></Route>
+        <Route
+          index
+          element={<Vans />}
+          errorElement={<Error />}
+          loader={vansLoader}
+        ></Route>
         <Route
           path=":id"
           element={<VanDetail />}
@@ -42,23 +52,18 @@ const router = createBrowserRouter(
         <Route
           index
           element={<Dashboard />}
-          loader={async () => {
-            return null;
-          }}
+          loader={dashboardLoader}
+          // loader={async () => await requireAuth}
         ></Route>
         <Route
           path="income"
           element={<Income />}
-          loader={async () => {
-            return null;
-          }}
+          loader={async () => await requireAuth()}
         ></Route>
         <Route
           path="reviews"
           element={<Reviews />}
-          loader={async () => {
-            return null;
-          }}
+          loader={async () => await requireAuth()}
         ></Route>
         <Route
           path="vans"
@@ -71,30 +76,25 @@ const router = createBrowserRouter(
         <Route
           path="vans/:id"
           element={<HostVanDetails />}
-          loader={async () => {
-            return null;
-          }}
+          loader={HostVanLoaderDetails}
+          // loader={async () => {
+          //   return null;
+          // }}
         >
           <Route
             index
             element={<HostVanInfo />}
-            loader={async () => {
-              return null;
-            }}
+            loader={async () => await requireAuth()}
           ></Route>
           <Route
             path="pricing"
             element={<HostVanPricing />}
-            loader={async () => {
-              return null;
-            }}
+            loader={async () => await requireAuth()}
           ></Route>
           <Route
             path="photos"
             element={<HostVanPhotos />}
-            loader={async () => {
-              return null;
-            }}
+            loader={async () => await requireAuth()}
           ></Route>
         </Route>
       </Route>

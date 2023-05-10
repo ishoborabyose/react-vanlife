@@ -1,34 +1,17 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { getVansHost } from "../../api";
+// import { requireAuth } from "../../utils";
+
+export async function loader() {
+  // await requireAuth();
+  return getVansHost();
+}
 
 const Dashboard = () => {
-  const [vans, setVans] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    async function loadVans() {
-      setLoading(true);
-      try {
-        const data = await getVansHost();
-        setVans(data);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadVans();
-  }, []);
-
-  if (error) {
-    return (
-      <h1 className="text-2xl font-black text-[#161616] bg-[#FFF7ED] leading-6">
-        There was an error: {error.message}
-      </h1>
-    );
-  }
+  const vans = useLoaderData();
+  console.log("====================================");
+  console.log(vans);
+  console.log("====================================");
 
   return (
     <div className="bg-[#FFF7ED]">
@@ -53,11 +36,8 @@ const Dashboard = () => {
       <div className="bg-[#FFDDB3] py-12">
         <div className="max-w-7xl mx-auto px-4 flex justify-between">
           <h4 className="text-[#161616] flex font-bold leading-6 text-2xl">
-            {" "}
-            Review score <img
-              className="mx-4"
-              src="/assets/Star.png"
-            /> 5.0 <span className="font-medium ">/5</span>
+            Review score <img className="mx-4" src="/assets/Star.png" /> 5.0{" "}
+            <span className="font-medium ">/5</span>
           </h4>
           <h4 className="text-[#161616] font-medium leading-6 text-base">
             Details
@@ -75,38 +55,32 @@ const Dashboard = () => {
           </h4>
         </div>
         <div>
-          {vans.length > 0 && loading ? (
-            <h1 className="text-2xl font-black text-[#161616] bg-[#FFF7ED] leading-6">
-              Loading...
-            </h1>
-          ) : (
-            <section className="pb-6">
-              {vans.map((van) => {
-                return (
-                  <Link className="" to={`/host/vans/${van.id}`} key={van.id}>
-                    <div className="bg-white mt-3 py-5 px-6 flex items-center">
-                      <img
-                        className="w-16 h-16"
-                        src={van.imageUrl}
-                        alt={`photo of ${van.name}`}
-                      />
-                      <div className="ml-4">
-                        <h3 className="font-semibold text-xl leading-8 text-[#161616]">
-                          {van.name}
-                        </h3>
-                        <p className="text-[#4D4D4D] font-medium text-base leading-8">
-                          ${van.price} /day
-                        </p>
-                      </div>
-                      <h4 className="text-[#161616] font-medium text-base leading-6  ml-auto">
-                        Edit
-                      </h4>
+          <section className="pb-6">
+            {vans.map((van) => {
+              return (
+                <Link to={`/host/vans/${van.id}`} key={van.id}>
+                  <div className="bg-white mt-3 py-5 px-6 flex items-center">
+                    <img
+                      className="w-16 h-16"
+                      src={van.imageUrl}
+                      alt={`photo of ${van.name}`}
+                    />
+                    <div className="ml-4">
+                      <h3 className="font-semibold text-xl leading-8 text-[#161616]">
+                        {van.name}
+                      </h3>
+                      <p className="text-[#4D4D4D] font-medium text-base leading-8">
+                        ${van.price} /day
+                      </p>
                     </div>
-                  </Link>
-                );
-              })}
-            </section>
-          )}
+                    <h4 className="text-[#161616] font-medium text-base leading-6  ml-auto">
+                      Edit
+                    </h4>
+                  </div>
+                </Link>
+              );
+            })}
+          </section>
         </div>
       </div>
     </div>
