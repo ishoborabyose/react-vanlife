@@ -34,19 +34,21 @@ const Login = () => {
 
   return (
     <div className="bg-[#FFF7ED]">
-      <div className="max-w-7xl mx-auto px-4 py-20">
+      <div className="max-w-7xl mx-auto px-4 py-40">
         <h1 className="font-bold text-center mb-12 text-3xl leading-5 text-[#161616]">
           Sign in to your account
         </h1>
         {message && (
-          <h3 className="text-red-800 text-3xl leading-9 my-3">{message}</h3>
+          <h3 className="text-red-800 text-3xl text-center leading-9 my-5">
+            {message}
+          </h3>
         )}
         {errorMessage && (
-          <h3 className="text-red-800 text-3xl leading-9 my-3">
+          <h3 className="text-red-800 text-3xl text-center leading-9 my-5">
             {errorMessage}
           </h3>
         )}
-        <Form method="post" className="flex flex-col" replace>
+        <Form method="post" className="flex flex-col " replace>
           <input
             name="email"
             type="email"

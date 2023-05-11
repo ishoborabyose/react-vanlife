@@ -54,7 +54,12 @@ const Navbar = () => {
           >
             <img src="/assets/User.png" alt="" />
           </NavLink>
-          <button onClick={fakeLogOut}>X</button>
+          <button
+            className="text-2xl text-[#161616] px-2 font-bold"
+            onClick={fakeLogOut}
+          >
+            X
+          </button>
         </div>
       </div>
     </div>
