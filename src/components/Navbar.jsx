@@ -1,6 +1,9 @@
 import { NavLink, Link } from "react-router-dom";
 
 const Navbar = () => {
+  function fakeLogOut() {
+    localStorage.removeItem("loggedin");
+  }
   return (
     <div className="bg-[#FFF7ED]">
       <div className="flex justify-between py-9 max-w-7xl mx-auto px-4">
@@ -51,6 +54,7 @@ const Navbar = () => {
           >
             <img src="/assets/User.png" alt="" />
           </NavLink>
+          <button onClick={fakeLogOut}>X</button>
         </div>
       </div>
     </div>
