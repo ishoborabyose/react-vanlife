@@ -5,7 +5,7 @@ const Error = () => {
 
   return (
     <div>
-      <h1>Error: {error.message}</h1>
+      <h1>Error: {error.message} - </h1>
       <pre>
         {error.status} - {error.statusText}
       </pre>
