@@ -5,7 +5,7 @@ const VansFilter = ({ typeFilter, handleFilterChange }) => {
         { name: "Simple", type: "simple" },
         { name: "Luxury", type: "luxury" },
         { name: "Rugged", type: "rugged" },
-      ].map((item, index) => {
+      ].map((item, index) => (
         <div
           className={`cursor-pointer px-3 py-2 rounded-md text-[#4D4D4D] text-center text-base leading-6
               ${
@@ -21,8 +21,9 @@ const VansFilter = ({ typeFilter, handleFilterChange }) => {
           key={index}
         >
           {item.name}
-        </div>;
-      })}
+          {console.log(item.name)}
+        </div>
+      ))}
       {typeFilter ? (
         <p
           onClick={() => handleFilterChange("type", null)}
